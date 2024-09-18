@@ -1,18 +1,15 @@
-import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pilacuatro {
     static int tope = 0;  // índice del tope de la pila
-    static int t = 26;    // tamaño de la pila ajustado a 26 (número de letras minúsculas)
+    static int t = 27;    // tamaño de la pila ajustado a 26 (número de letras minúsculas)
     static int opt = 0;   // opción del menú
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
         // Ya sabemos que el tamaño es 26
-        System.out.println("El tamaño de la pila es 26");
+        System.out.println("El tamaño de la pila es 27");
 
         char[] pila = new char[t];  // Arreglo de caracteres
 
@@ -64,23 +61,18 @@ public class Pilacuatro {
     }
 
     public static void llenar(char[] pila) {
-        List<Character> letras = new ArrayList<>();
-        
-        // Añadir todas las letras minúsculas del alfabeto
-        for (char c = 'a'; c <= 'z'; c++) {
-            letras.add(c);
-        }
+        boolean[] usada = new boolean[27]; // Marca si una letra ha sido utilizada
+        int count = 0;
 
-        // Barajar las letras aleatoriamente
-        Collections.shuffle(letras);
-
-        // Llenar la pila con las letras minúsculas
-        for (int i = 0; i < t; i++) {
-            pila[i] = letras.get(i);
+        while (count < t) {
+            char letra = (char) ('a' + (int) (Math.random() * 26));
+            if (!usada[letra - 'a']) {
+                pila[count] = letra;
+                usada[letra - 'a'] = true;
+                count++;
+            }
         }
         tope = t;  // Actualizar el tope de la pila
     }
 }
-
-
 
