@@ -96,23 +96,23 @@ public class Pila {
     // Método para llenar Pila C con elementos alternados de A y B
     public static void llenarPilaC(char[] pilaA, int[] pilaB) {
         topeC = 0;  // Reiniciar el tope de Pila C
+        int i = 0;
 
-        int minSize = Math.min(topeA, topeB);  // Determinar el tamaño mínimo de las pilas
-
-        // Llenar alternadamente
-        for (int i = 0; i < minSize; i++) {
+        // Llenar alternadamente mientras ambas pilas tengan elementos
+        while (i < topeA && i < topeB) {
             PilaC[topeC++] = pilaA[i];  // Agregar elemento de Pila A
             PilaC[topeC++] = pilaB[i];  // Agregar elemento de Pila B
+            i++;
         }
 
         // Si hay elementos sobrantes en Pila A
-        for (int i = minSize; i < topeA; i++) {
-            PilaC[topeC++] = pilaA[i];
+        while (i < topeA) {
+            PilaC[topeC++] = pilaA[i++];
         }
 
         // Si hay elementos sobrantes en Pila B
-        for (int i = minSize; i < topeB; i++) {
-            PilaC[topeC++] = pilaB[i];
+        while (i < topeB) {
+            PilaC[topeC++] = pilaB[i++];
         }
 
         System.out.println("Pila C llenada automáticamente con elementos alternados de Pila A y B");
@@ -154,6 +154,7 @@ public class Pila {
         }
     }
 }
+
 
 
 
